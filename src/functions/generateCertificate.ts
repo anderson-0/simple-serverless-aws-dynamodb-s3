@@ -3,7 +3,7 @@ import {readFileSync} from "fs";
 import { document } from "src/utils/dynamodbClient";
 import * as handlebars from "handlebars";
 import dayjs from "dayjs";
-
+import {S3} from 'aws-sdk'
 import chromium from "chrome-aws-lambda";
 
 interface ICreateCertificateDTO {
@@ -73,10 +73,20 @@ export const handle = async (event) => {
 
     await browser.close();
 
+    const s3 = new S3();
+
+    await s3.putObject({
+        Bucket:'serverless-ignite-anderson',
+        Key: `${id}.pdf`,
+        ACL: 'public-read',
+        Body: pdf,
+        ContentType: 'application/pdf'
+    }).promise()
+
     return {
         statusCode: 201,
         body: JSON.stringify({
-            response
+            url: `https://serverless-ignite-anderson.s3.us-east-1.amazonaws.com/${id}.pdf`
         }),
         headers: {
             'Content-Type': 'application/json'
