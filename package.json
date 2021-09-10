@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Serverless aws-nodejs-typescript template",
   "scripts": {
-    "dev": "serverless offline",
-    "deploy": "sls deploy -v",
-    "dynamo:start": "serverless dynamodb start"
+    "dev": "serverless offline ",
+    "dynamo:start": "serverless dynamodb start",
+    "deploy": "serverless deploy -v"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -13,6 +13,10 @@
   "dependencies": {
     "@middy/core": "^1.5.2",
     "@middy/http-json-body-parser": "^1.5.2",
+    "chrome-aws-lambda": "^10.1.0",
+    "dayjs": "^1.10.6",
+    "handlebars": "^4.7.7",
+    "puppeteer-core": "^10.2.0",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
@@ -20,6 +24,7 @@
     "@types/aws-lambda": "^8.10.71",
     "@types/node": "^14.14.25",
     "json-schema-to-ts": "^1.5.0",
+    "puppeteer": "^10.2.0",
     "serverless": "^2.23.0",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-offline": "^8.1.0",
